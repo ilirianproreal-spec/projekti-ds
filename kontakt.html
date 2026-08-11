@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kontakto Trust Music — Marc Hill DJ, Ilo, Ervisi, Xent, Jolle. Rezervo një sesion në Prishtinë.">
+  <title>Kontakti — Trust Music | Marc Hill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">♫</div>
+        <span>Trust Music</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Kreu</a></li>
+        <li><a href="sherbime.html">Shërbimet</a></li>
+        <li><a href="event.html">Eventet</a></li>
+        <li><a href="kontakt.html" class="active">Kontakti</a></li>
+        <li><a href="kontakt.html" class="nav-cta">Rezervo Tani</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Na <span class="highlight">Kontakto</span></h1>
+      <p>Marc Hill, Ilo, Ervisi, Xent, Jolle — Trust Music. Na shkruaj për të rezervuar një sesion ose për çdo pyetje.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h2>Informacioni i <span class="highlight">Kontaktit</span></h2>
+          <p>Na kontakto në çfarëdo mënyre që të preferon. Jemi të hapur nga e hëna në të shtunë.</p>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <h4>Adresa</h4>
+              <p>Rruga "Dëshmorët e Kombit", Prishtinë, Shqipëri</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div class="contact-item-text">
+              <h4>Telefoni</h4>
+              <p>+355 69 123 4567</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div class="contact-item-text">
+              <h4>Email</h4>
+              <p>info@trustmusice.al</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">🕐</div>
+            <div class="contact-item-text">
+              <h4>Orari</h4>
+              <p>E Hënë – E Shtunë: 09:00 – 20:00<br>E Diel: Mbyllur</p>
+            </div>
+          </div>
+
+          <!-- Map Placeholder -->
+          <div style="margin-top: 32px; aspect-ratio: 16/9; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <div style="text-align: center; color: var(--text-muted); padding: 24px;">
+              <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🗺️</span>
+              <p style="margin: 0;">Prishtinë, Shqipëri</p>
+              <p style="margin: 4px 0 0; font-size: 0.85rem;">Harta interaktive — së shpejti</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form" id="rezervo">
+          <h3>Rezervo një Sesion</h3>
+          <form id="contactForm" onsubmit="return handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Emri i Plotë *</label>
+              <input type="text" id="name" name="name" placeholder="Emri dhe mbiemri" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="adresa@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefoni</label>
+              <input type="tel" id="phone" name="phone" placeholder="+355 69 123 4567">
+            </div>
+
+            <div class="form-group">
+              <label for="service">Shërbimi i Dëshiruar *</label>
+              <select id="service" name="service" required>
+                <option value="">Zgjidh një shërbim...</option>
+                <option value="incizim">Incizim Profesional</option>
+                <option value="miks">Miks & Master</option>
+                <option value="produksion">Produksion Muzikor</option>
+                <option value="konsulence">Konsulencë Audio</option>
+                <option value="tjeter">Tjetër / Nuk jam i sigurt</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="date">Data e Preferuar</label>
+              <input type="date" id="date" name="date">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Mesazhi</label>
+              <textarea id="message" name="message" placeholder="Na trego më shumë rreth projektit tënd..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit">Dërgo Kërkesën</button>
+          </form>
+
+          <!-- Success Message (hidden by default) -->
+          <div id="formSuccess" style="display:none; text-align:center; padding: 40px 20px;">
+            <div style="font-size: 3rem; margin-bottom: 16px;">✅</div>
+            <h3 style="margin-bottom: 12px;">Faleminderit!</h3>
+            <p>Kërkesa juaj u dërgua me sukses. Do t'ju kontaktojmë brenda 24 orëve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">♫</div>
+            <span>Trust Music</span>
+          </a>
+          <p>Trust Music — themeluar nga Krenar Batusha & And Sylejmani. Marc Hill DJ & Producent, Ilo, Ervisi, Xent, Jolle. Prishtinë.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Faqet</h4>
+          <ul>
+            <li><a href="index.html">Kreu</a></li>
+            <li><a href="sherbime.html">Shërbimet</a></li>
+            <li><a href="kontakt.html">Kontakti</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Shërbimet</h4>
+          <ul>
+            <li><a href="sherbime.html#incizim">Incizim</a></li>
+            <li><a href="sherbime.html#miks">Miks & Master</a></li>
+            <li><a href="sherbime.html#produksion">Produksion</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontakti</h4>
+          <ul>
+            <li><a href="mailto:info@trustmusice.al">info@trustmusice.al</a></li>
+            <li><a href="tel:+355691234567">+355 69 123 4567</a></li>
+            <li><a href="#">Prishtinë, Shqipëri</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Trust Music. Të gjitha të drejtat e rezervuara.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    (function() {
+      var toggle = document.getElementById('menuToggle');
+      var navLinks = document.getElementById('navLinks');
+      var overlay = document.getElementById('navOverlay');
+
+      function closeMenu() {
+        toggle.classList.remove('open');
+        navLinks.classList.remove('open');
+        overlay.classList.remove('show');
+      }
+
+      toggle.addEventListener('click', function() {
+        var isOpen = navLinks.classList.contains('open');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          toggle.classList.add('open');
+          navLinks.classList.add('open');
+          overlay.classList.add('show');
+        }
+      });
+
+      overlay.addEventListener('click', closeMenu);
+
+      var links = navLinks.querySelectorAll('a');
+      links.forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+
+    // Form submission handler
+    function handleSubmit(event) {
+      event.preventDefault();
+      var form = document.getElementById('contactForm');
+      var success = document.getElementById('formSuccess');
+      form.style.display = 'none';
+      success.style.display = 'block';
+      return false;
+    }
+  </script>
+</body>
+</html>

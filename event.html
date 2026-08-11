@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Eventet e Trust Music — Regjistrohu për koncertet dhe showcase-et e ardhshme me Marc Hill, Ilo, Ervisi, Xent dhe Jolle.">
+  <title>Eventet — Trust Music | Regjistrohu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Supabase SDK -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">♫</div>
+        <span>Trust Music</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Kreu</a></li>
+        <li><a href="sherbime.html">Shërbimet</a></li>
+        <li><a href="event.html" class="active">Eventet</a></li>
+        <li><a href="kontakt.html">Kontakti</a></li>
+        <li><a href="kontakt.html" class="nav-cta">Rezervo Tani</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Eventet e <span class="highlight">Trust Music</span></h1>
+      <p>Regjistrohu për koncertet dhe showcase-et tona. Një natë me muzikë live nga Marc Hill, Ilo, Ervisi, Xent dhe Jolle.</p>
+    </div>
+  </section>
+
+  <!-- Event Registration -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Event Info -->
+        <div class="contact-info">
+          <h2>Eventi i <span class="highlight">Radhës</span></h2>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">🎵</div>
+            <div class="contact-item-text">
+              <h4>Trust Music Live</h4>
+              <p>Një natë e paharruar me muzikë live, beat-e ekskluzive dhe performanca nga të gjithë artistët e Trust Music.</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <h4>Lokacioni</h4>
+              <p>Prishtinë, Kosovë</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📅</div>
+            <div class="contact-item-text">
+              <h4>Data & Ora</h4>
+              <p>E Shtunë, 20 Shtator 2026 — 20:00</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">👥</div>
+            <div class="contact-item-text">
+              <h4>Artistët</h4>
+              <p>Marc Hill (DJ Set) • Ilo • Ervisi • Xent • Jolle</p>
+            </div>
+          </div>
+
+          <!-- Registered Count -->
+          <div id="registeredCount" style="margin-top: 24px; padding: 20px; background: var(--gold-glow); border: 1px solid rgba(212,175,55,0.2); border-radius: var(--radius-md); text-align: center;">
+            <div style="font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 800; color: var(--gold);" id="countNumber">...</div>
+            <p style="margin: 4px 0 0; font-size: 0.9rem;">të regjistruar deri tani</p>
+          </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="contact-form" id="formContainer">
+          <h3>Regjistrohu për Eventin</h3>
+          <form id="eventForm">
+            <div class="form-group">
+              <label for="name">Emri i Plotë *</label>
+              <input type="text" id="name" name="name" placeholder="Emri dhe mbiemri" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="adresa@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefoni</label>
+              <input type="tel" id="phone" name="phone" placeholder="+383 44 123 456">
+            </div>
+
+            <div class="form-group">
+              <label for="tickets">Bileta *</label>
+              <select id="tickets" name="tickets" required>
+                <option value="">Zgjidh numrin e biletave...</option>
+                <option value="1">1 Biletë</option>
+                <option value="2">2 Bileta</option>
+                <option value="3">3 Bileta</option>
+                <option value="4">4 Bileta</option>
+                <option value="5">5+ Bileta</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Mesazh (opsionale)</label>
+              <textarea id="message" name="message" placeholder="Ndonjë kërkesë e veçantë?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+              Regjistrohu Tani
+            </button>
+            <p id="formStatus" style="text-align: center; margin-top: 12px; font-size: 0.9rem; display: none;"></p>
+          </form>
+
+          <!-- Success -->
+          <div id="formSuccess" style="display:none; text-align:center; padding: 40px 20px;">
+            <div style="font-size: 3rem; margin-bottom: 16px;">🎉</div>
+            <h3 style="margin-bottom: 12px;">Regjistrimi u krye me sukses!</h3>
+            <p>Faleminderit! Të dhënat tuaja u ruajtën. Do t'ju njoftojmë me detajet e eventit.</p>
+            <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 20px;">Regjistro një tjetër</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">♫</div>
+            <span>Trust Music</span>
+          </a>
+          <p>Trust Music — Marc Hill DJ & Producent, Ilo, Ervisi, Xent dhe Jolle. Studio muzikore në Prishtinë.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Faqet</h4>
+          <ul>
+            <li><a href="index.html">Kreu</a></li>
+            <li><a href="sherbime.html">Shërbimet</a></li>
+            <li><a href="event.html">Eventet</a></li>
+            <li><a href="kontakt.html">Kontakti</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Shërbimet</h4>
+          <ul>
+            <li><a href="sherbime.html#incizim">Incizim</a></li>
+            <li><a href="sherbime.html#miks">Miks & Master</a></li>
+            <li><a href="sherbime.html#produksion">Produksion</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontakti</h4>
+          <ul>
+            <li><a href="mailto:info@trustmusic.al">info@trustmusic.al</a></li>
+            <li><a href="tel:+38344123456">+383 44 123 456</a></li>
+            <li><a href="#">Prishtinë, Kosovë</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Trust Music. Të gjitha të drejtat e rezervuara.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    (function() {
+      var toggle = document.getElementById('menuToggle');
+      var navLinks = document.getElementById('navLinks');
+      var overlay = document.getElementById('navOverlay');
+
+      function closeMenu() {
+        toggle.classList.remove('open');
+        navLinks.classList.remove('open');
+        overlay.classList.remove('show');
+      }
+
+      toggle.addEventListener('click', function() {
+        var isOpen = navLinks.classList.contains('open');
+        if (isOpen) { closeMenu(); }
+        else { toggle.classList.add('open'); navLinks.classList.add('open'); overlay.classList.add('show'); }
+      });
+
+      overlay.addEventListener('click', closeMenu);
+      navLinks.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', closeMenu); });
+    })();
+
+    // Supabase — init only after DOM + SDK loaded
+    window.addEventListener('DOMContentLoaded', function() {
+      var SUPABASE_URL = 'https://cedzpbifgveuyleaxibo.supabase.co';
+      var SUPABASE_KEY = 'sb_publishable_UZdgHVc8Nfgqxmo7E0WdSw_nGSHiuIa';
+
+      // Wait for SDK (defer)
+      function initSupabase(retries) {
+        retries = retries || 0;
+        if (typeof window.supabase === 'undefined') {
+          if (retries > 30) { console.error('Supabase SDK nuk u ngarkua'); return; }
+          setTimeout(function() { initSupabase(retries + 1); }, 200);
+          return;
+        }
+        var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Load registered count
+        loadCount(sb);
+
+        // Form submit
+        var form = document.getElementById('eventForm');
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          var btn = document.getElementById('submitBtn');
+          var statusEl = document.getElementById('formStatus');
+          var data = {
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            tickets: document.getElementById('tickets').value,
+            message: document.getElementById('message').value.trim()
+          };
+
+          if (!data.name || !data.email || !data.tickets) {
+            showStatus('Ju lutem plotësoni fushat e detyruara.', 'error');
+            return;
+          }
+
+          btn.disabled = true;
+          btn.textContent = 'Duke u regjistruar...';
+          showStatus('', '');
+
+          sb.from('event_registrations')
+            .insert([{
+              name: data.name,
+              email: data.email,
+              phone: data.phone,
+              tickets: parseInt(data.tickets),
+              message: data.message,
+              event_name: 'Trust Music Live',
+              created_at: new Date().toISOString()
+            }])
+            .then(function(res) {
+              if (res.error) {
+                console.error('Supabase error:', res.error);
+                showStatus('Gabim: ' + res.error.message, 'error');
+                btn.disabled = false;
+                btn.textContent = 'Regjistrohu Tani';
+                return;
+              }
+              // Success
+              document.getElementById('formContainer').querySelector('form').style.display = 'none';
+              document.getElementById('formSuccess').style.display = 'block';
+              loadCount(sb);
+            });
+        });
+
+        function showStatus(msg, type) {
+          var el = document.getElementById('formStatus');
+          el.style.display = msg ? 'block' : 'none';
+          el.textContent = msg;
+          el.style.color = type === 'error' ? '#ff4444' : 'var(--gold)';
+        }
+
+        function loadCount(sb) {
+          sb.from('event_registrations')
+            .select('*', { count: 'exact', head: true })
+            .then(function(res) {
+              document.getElementById('countNumber').textContent = res.count || 0;
+            });
+        }
+      }
+
+      initSupabase();
+    });
+  </script>
+</body>
+</html>
