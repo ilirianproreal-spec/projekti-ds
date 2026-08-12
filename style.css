@@ -127,6 +127,13 @@ img {
   color: #0a0a0a;
 }
 
+.logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
 .logo span {
   background: linear-gradient(135deg, var(--gold-light), var(--gold));
   -webkit-background-clip: text;
@@ -600,6 +607,153 @@ img {
 
 .service-link:hover {
   gap: 12px;
+}
+
+/* --- Artist Cards (with photo) --- */
+.artist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 28px;
+}
+
+.artist-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0 0 32px 0;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.artist-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-gold), var(--shadow-card);
+  transform: translateY(-4px);
+}
+
+.artist-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.artist-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artist-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.artist-card:hover .artist-photo-placeholder {
+  color: var(--gold);
+}
+
+.artist-photo-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+  transition: var(--transition);
+}
+
+.artist-card:hover .artist-photo-icon {
+  opacity: 0.8;
+}
+
+.artist-photo-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.artist-card h3 {
+  font-size: 1.3rem;
+  margin-top: 24px;
+  margin-bottom: 6px;
+  padding: 0 20px;
+}
+
+.artist-role {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  padding: 0 20px;
+}
+
+.artist-desc {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  padding: 0 20px;
+}
+
+/* --- Artist Social Links --- */
+.artist-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 0 16px;
+}
+
+.artist-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.artist-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-glow);
+  transform: translateY(-1px);
+}
+
+/* --- Artist Linktree (full-width CTA) --- */
+.artist-linktree {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: #0a0a0a;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  margin: 14px 16px 0 16px;
+  transition: var(--transition);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+
+.artist-linktree:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+  color: #0a0a0a;
 }
 
 /* --- Equipment Section --- */
