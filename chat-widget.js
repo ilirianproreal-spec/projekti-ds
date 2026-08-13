@@ -12,6 +12,36 @@
   var GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
   var MODEL = "llama-3.3-70b-versatile";
 
+  // Supabase — ruajtje qendrore e rezervimeve (pronari i sheh në admin.html)
+  var SUPABASE_URL = "https://cedzpbifgveuyleaxibo.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_UZdgHVc8Nfgqxmo7E0WdSw_nGSHiuIa";
+  var sb = null;
+
+  function loadSupabase() {
+    if (window.supabase) { initSupabase(); return; }
+    var s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+    s.onload = initSupabase;
+    document.head.appendChild(s);
+  }
+  function initSupabase() {
+    try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch (e) {}
+  }
+
+  function saveBookingToCloud(booking) {
+    if (!sb) return;
+    sb.from("bookings").insert([{
+      name: booking.name,
+      phone: booking.phone || null,
+      service: booking.service,
+      date: booking.date,
+      time: booking.time,
+      source: "ai-chat"
+    }]).then(function (r) {
+      if (r.error) console.warn("Supabase booking error:", r.error.message);
+    });
+  }
+
   var SYSTEM_PROMPT =
     "Ti je asistenti virtual i 'Trust Music', studio muzikore profesionale në Prishtinë, Shqipëri. " +
     "Themeluar nga Krenar Batusha & And Sylejmani. Artet: Marc Hill (DJ & Producent), Ilothegoat, Ervisi, Xent, Jolle.\n\n" +
@@ -22,7 +52,7 @@
     "- Konsulencë Audio\n\n" +
     "Orari: E Hënë – E Shtunë 09:00–20:00, E Diel mbyllur.\n" +
     "Adresa: Rruga 'Dëshmorët e Kombit', Prishtinë.\n" +
-    "Email: info@trustmusice.al | Tel: +355 69 123 4567.\n\n" +
+    "Email: info@trustmusice.al | Tel: +383 48 317 357.\n\n" +
     "RREGULLA TË RËNDËSISHME:\n" +
     "1. Përgjigju GJITHMONË në shqip, shkurt dhe miqësisht.\n" +
     "2. MOS jep asnjë çmim/kosto — nëse pyesin për çmime, thuaj 'Na kontakto për një ofertë të personalizuar.'\n" +
@@ -83,7 +113,7 @@
       '<form id="tm-form">' +
         '<div style="display:flex;justify-content:space-between;align-items:center"><b style="font:700 13px Poppins;color:#D4AF37">📅 Rezervo Terminin</b><button type="button" id="tm-cancel">Anulo</button></div>' +
         '<div class="tm-field"><label>Emri i plotë *</label><input id="tm-b-name" placeholder="Emri dhe mbiemri" required></div>' +
-        '<div class="tm-field"><label>Telefoni</label><input id="tm-b-phone" type="tel" placeholder="+355 ..."></div>' +
+        '<div class="tm-field"><label>Telefoni</label><input id="tm-b-phone" type="tel" placeholder="+383 48 317 357"></div>' +
         '<div class="tm-field"><label>Shërbimi *</label><select id="tm-b-service" required><option value="">Zgjidh...</option><option>Incizim Profesional</option><option>Miks & Master</option><option>Produksion Muzikor</option><option>Konsulencë Audio</option><option>Tjetër</option></select></div>' +
         '<div class="tm-row"><div class="tm-field"><label>Data *</label><input id="tm-b-date" type="date" required></div><div class="tm-field"><label>Ora *</label><input id="tm-b-time" type="time" required></div></div>' +
         '<button type="submit" id="tm-submit">Konfirmo Rezervimin ✓</button>' +
@@ -206,6 +236,9 @@
     list.push(booking);
     localStorage.setItem("tm_bookings", JSON.stringify(list));
 
+    // Ruaj në Supabase (pronari i sheh në admin.html)
+    saveBookingToCloud(booking);
+
     toggleForm(false);
     form.reset();
 
@@ -254,4 +287,7 @@
     var today = new Date();
     dateInput.min = today.toISOString().split("T")[0];
   }
+
+  // Ngarko Supabase për ruajtje qendrore të rezervimeve
+  loadSupabase();
 })();

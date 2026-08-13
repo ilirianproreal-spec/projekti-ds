@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Rezervimet — Trust Music (Admin)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#0a0a0a;--card:#1a1a1a;--gold:#D4AF37;--gold-dark:#B8960F;--text:#fff;--muted:#707070;--border:#2a2a2a;--green:#22c55e;--red:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:24px}
+.container{max-width:1000px;margin:0 auto}
+h1{font:800 28px 'Poppins';margin-bottom:4px}
+h1 span{color:var(--gold)}
+.sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+/* Login */
+#login{max-width:380px;margin:80px auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center}
+#login .lock{font-size:40px;margin-bottom:12px}
+#login h2{font:700 20px 'Poppins';margin-bottom:8px}
+#login p{color:var(--muted);font-size:13px;margin-bottom:20px}
+#login input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:#0f0f0f;color:#fff;font:500 15px 'Inter';outline:none;text-align:center;letter-spacing:2px}
+#login input:focus{border-color:var(--gold)}
+#login button{width:100%;margin-top:12px;padding:12px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a;font:700 15px 'Poppins';cursor:pointer}
+#login .err{color:var(--red);font-size:12px;margin-top:10px;display:none}
+/* Dashboard */
+#dash{display:none}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.topbar .stats{display:flex;gap:12px;flex-wrap:wrap}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 20px;min-width:110px}
+.stat b{display:block;font:800 26px 'Poppins';color:var(--gold)}
+.stat span{font-size:12px;color:var(--muted)}
+.refresh{padding:10px 16px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a;font:700 14px 'Poppins';cursor:pointer}
+.logout{padding:10px 16px;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--muted);font:600 13px 'Inter';cursor:pointer}
+.logout:hover{color:var(--red);border-color:var(--red)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+thead{background:#151515}
+th{text-align:left;padding:14px 16px;font:600 12px 'Poppins';color:var(--gold);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+td{padding:13px 16px;font-size:13.5px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover{background:#1d1d1d}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(212,175,55,.15);color:var(--gold)}
+.wa-btn{display:inline-block;padding:6px 12px;border-radius:8px;background:#25D366;color:#fff;font-size:12px;font-weight:600;text-decoration:none;transition:.2s}
+.wa-btn:hover{opacity:.85}
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty .ic{font-size:48px;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Login -->
+  <div id="login">
+    <div class="lock">🔐</div>
+    <h2>Trust Music — Admin</h2>
+    <p>Shkruaj fjalëkalimin për të parë rezervimet</p>
+    <input type="password" id="pw" placeholder="••••••" autocomplete="off">
+    <button onclick="login()">Hyr</button>
+    <div class="err" id="err">Fjalëkalim i gabuar</div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dash">
+    <div class="topbar">
+      <div>
+        <h1>📅 <span>Rezervimet</span></h1>
+        <div class="sub">Të gjitha terminat e rezervuara përmes AI dhe formularit</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="refresh" onclick="loadBookings()">🔄 Rifresko</button>
+        <button class="logout" onclick="logout()">Dil</button>
+      </div>
+    </div>
+
+    <div class="topbar" style="margin-bottom:16px"><div class="stats" id="stats"></div></div>
+
+    <div id="tableWrap"></div>
+  </div>
+
+</div>
+
+<script>
+var SUPABASE_URL = 'https://cedzpbifgveuyleaxibo.supabase.co';
+var SUPABASE_KEY = 'sb_publishable_UZdgHVc8Nfgqxmo7E0WdSw_nGSHiuIa';
+var PASSWORD = 'trustmusic2026'; // ⚠️ Ndryshoje këtë fjalëkalim
+var sb = null;
+
+function login() {
+  var pw = document.getElementById('pw').value;
+  if (pw === PASSWORD) {
+    sessionStorage.setItem('tm_admin', '1');
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('dash').style.display = 'block';
+    loadBookings();
+  } else {
+    document.getElementById('err').style.display = 'block';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('tm_admin');
+  document.getElementById('login').style.display = 'block';
+  document.getElementById('dash').style.display = 'none';
+}
+
+function fmtDate(d) {
+  try { return new Date(d + 'T00:00:00').toLocaleDateString('sq-AL', {weekday:'long',day:'numeric',month:'long',year:'numeric'}); }
+  catch(e) { return d; }
+}
+
+function loadBookings() {
+  if (!sb) return;
+  sb.from('bookings').select('*').order('created_at', {ascending:false}).then(function(r) {
+    if (r.error) {
+      document.getElementById('tableWrap').innerHTML = '<div class="empty"><div class="ic">⚠️</div>Gabim: ' + r.error.message + '</div>';
+      return;
+    }
+    render(r.data || []);
+  });
+}
+
+function render(rows) {
+  var total = rows.length;
+  var today = new Date().toISOString().split('T')[0];
+  var upcoming = rows.filter(function(b){ return b.date >= today; }).length;
+
+  document.getElementById('stats').innerHTML =
+    '<div class="stat"><b>' + total + '</b><span>Gjithsej</span></div>' +
+    '<div class="stat"><b>' + upcoming + '</b><span>Në pritje</span></div>';
+
+  if (total === 0) {
+    document.getElementById('tableWrap').innerHTML = '<div class="empty"><div class="ic">📭</div>Asnjë rezervim ende</div>';
+    return;
+  }
+
+  var html = '<table><thead><tr>' +
+    '<th>#</th><th>Emri</th><th>Telefoni</th><th>Shërbimi</th><th>Data</th><th>Ora</th><th>Burimi</th><th></th>' +
+    '</tr></thead><tbody>';
+
+  rows.forEach(function(b, i) {
+    var phone = b.phone || '';
+    var wa = 'https://wa.me/' + phone.replace(/\D/g, '') + '?text=' + encodeURIComponent('Përshëndetje ' + b.name + ', në lidhje me rezervimin tuaj në Trust Music (' + b.service + ', ' + fmtDate(b.date) + ' ' + b.time + ')');
+    html += '<tr>' +
+      '<td>' + (i+1) + '</td>' +
+      '<td><b>' + esc(b.name) + '</b></td>' +
+      '<td>' + esc(phone) + '</td>' +
+      '<td><span class="badge">' + esc(b.service) + '</span></td>' +
+      '<td>' + fmtDate(b.date) + '</td>' +
+      '<td>' + esc(b.time) + '</td>' +
+      '<td>' + (b.source === 'ai-chat' ? '🤖 AI' : esc(b.source || '-')) + '</td>' +
+      '<td>' + (phone ? '<a class="wa-btn" href="' + wa + '" target="_blank">WhatsApp</a>' : '—') + '</td>' +
+      '</tr>';
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('tableWrap').innerHTML = html;
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Init Supabase
+function initSb(retries) {
+  retries = retries || 0;
+  if (typeof window.supabase === 'undefined') {
+    if (retries > 30) return;
+    setTimeout(function(){ initSb(retries+1); }, 200);
+    return;
+  }
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  if (sessionStorage.getItem('tm_admin') === '1') {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('dash').style.display = 'block';
+    loadBookings();
+  }
+}
+initSb();
+
+document.getElementById('pw').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') login();
+});
+</script>
+</body>
+</html>

@@ -32,3 +32,35 @@ ON event_registrations
 FOR SELECT
 TO anon
 USING (true);
+
+
+-- ============================================
+-- Tabela për rezervimet e termineve (AI Chatbot)
+-- ============================================
+CREATE TABLE IF NOT EXISTS bookings (
+  id         BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name       TEXT NOT NULL,
+  phone      TEXT,
+  service    TEXT NOT NULL,
+  date       TEXT NOT NULL,
+  time       TEXT NOT NULL,
+  source     TEXT NOT NULL DEFAULT 'ai-chat',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_bookings_date ON bookings(date);
+
+ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow anonymous insert"
+ON bookings
+FOR INSERT
+TO anon
+WITH CHECK (true);
+
+CREATE POLICY "Allow anonymous select"
+ON bookings
+FOR SELECT
+TO anon
+USING (true);
+
