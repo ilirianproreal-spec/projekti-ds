@@ -301,6 +301,16 @@ img {
   margin-bottom: 20px;
 }
 
+.hero-tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-top: -10px;
+  margin-bottom: 18px !important;
+  letter-spacing: 0.5px;
+}
+
 .hero-content h1 .highlight {
   background: linear-gradient(135deg, var(--gold-light), var(--gold));
   -webkit-background-clip: text;

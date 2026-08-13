@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kontakto Trust Music — Marc Hill DJ, Ilothegoat, Ervisi, Xent, Jolle. Rezervo një sesion në Prishtinë.">
-  <title>Kontakti — Trust Music | Marc Hill</title>
+  <meta name="description" content="Kontakto Trust Music™ — Marc Hill DJ, Ilothegoat, Ervisi, Xent, Jolle. Rezervo një sesion në Prishtinë.">
+  <title>Kontakti — Trust Music™ | Marc Hill</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
     <div class="container">
       <a href="index.html" class="logo">
         <div class="logo-icon">♫</div>
-        <span>Trust Music</span>
+        <span>Trust Music™</span>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -39,7 +39,7 @@
   <section class="page-header">
     <div class="container">
       <h1>Na <span class="highlight">Kontakto</span></h1>
-      <p>Marc Hill, Ilothegoat, Ervisi, Xent, Jolle — Trust Music. Na shkruaj për të rezervuar një sesion ose për çdo pyetje.</p>
+      <p>Marc Hill, Ilothegoat, Ervisi, Xent, Jolle — Trust Music™. Na shkruaj për të rezervuar një sesion ose për çdo pyetje.</p>
     </div>
   </section>
 
@@ -56,7 +56,7 @@
             <div class="contact-item-icon">📍</div>
             <div class="contact-item-text">
               <h4>Adresa</h4>
-              <p>Rruga "Dëshmorët e Kombit", Prishtinë, Kosovë</p>
+              <p>Prishtinë, Kosovë</p>
             </div>
           </div>
 
@@ -80,17 +80,17 @@
             <div class="contact-item-icon">🕐</div>
             <div class="contact-item-text">
               <h4>Orari</h4>
-              <p>E Hënë – E Shtunë: 09:00 – 20:00<br>E Diel: Mbyllur</p>
+              <p>E Hënë – E Shtunë: 12:00 – 02:00<br>E Diel: Mbyllur</p>
             </div>
           </div>
 
-          <!-- Map Placeholder -->
-          <div style="margin-top: 32px; aspect-ratio: 16/9; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-            <div style="text-align: center; color: var(--text-muted); padding: 24px;">
-              <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🗺️</span>
-              <p style="margin: 0;">Prishtinë, Kosovë</p>
-              <p style="margin: 4px 0 0; font-size: 0.85rem;">Harta interaktive — së shpejti</p>
-            </div>
+          <!-- Harta e Prishtinës -->
+          <div style="margin-top: 32px; aspect-ratio: 16/9; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;">
+            <iframe
+              src="https://maps.google.com/maps?q=Prishtin%C3%AB,%20Kosov%C3%AB&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              width="100%" height="100%" style="border:0; display:block;"
+              loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+              title="Harta e Prishtinës"></iframe>
           </div>
         </div>
 
@@ -156,9 +156,9 @@
         <div class="footer-brand">
           <a href="index.html" class="logo">
             <div class="logo-icon">♫</div>
-            <span>Trust Music</span>
+            <span>Trust Music™</span>
           </a>
-          <p>Trust Music — themeluar nga Krenar Batusha & And Sylejmani. Marc Hill DJ & Producent, Ilothegoat, Ervisi, Xent, Jolle. Prishtinë.</p>
+          <p>Trust Music™ — themeluar nga Krenar Batusha & And Sylejmani. Marc Hill DJ & Producent, Ilothegoat, Ervisi, Xent, Jolle. Prishtinë.</p>
         </div>
         <div class="footer-col">
           <h4>Faqet</h4>
@@ -186,7 +186,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Trust Music. Të gjitha të drejtat e rezervuara.</p>
+        <p>© 2026 Trust Music™. Të gjitha të drejtat e rezervuara.</p>
         <div class="social-links">
           <a href="#" aria-label="Instagram">📷</a>
           <a href="#" aria-label="Facebook">📘</a>
@@ -242,7 +242,7 @@
       var date = document.getElementById('date').value;
       var message = document.getElementById('message').value.trim();
 
-      var waMsg = "🎶 REZERVIM I RI — Trust Music\n\n" +
+      var waMsg = "🎶 REZERVIM I RI — Trust Music™\n\n" +
         "• Emri: " + name + "\n" +
         "• Email: " + email + "\n" +
         (phone ? "• Telefoni: " + phone + "\n" : "") +

@@ -1,5 +1,5 @@
 /* ============================================
-   Trust Music — AI Asistenti (Groq)
+   Trust Music™ — AI Asistenti (Groq)
    Chatbot + Rezervim Terminash (datë + orë)
    Shto: <script src="chat-widget.js"></script> para </body>
    ============================================ */
@@ -43,15 +43,15 @@
   }
 
   var SYSTEM_PROMPT =
-    "Ti je asistenti virtual i 'Trust Music', studio muzikore profesionale në Prishtinë, Kosovë. " +
+    "Ti je asistenti virtual i 'Trust Music™', studio muzikore profesionale në Prishtinë, Kosovë. " +
     "Themeluar nga Krenar Batusha & And Sylejmani. Artet: Marc Hill (DJ & Producent), Ilothegoat, Ervisi, Xent, Jolle.\n\n" +
     "Shërbimet tona:\n" +
     "- Incizim Profesional (kabina akustike, mikrofona Neumann/AKG/Shure)\n" +
     "- Miks & Master\n" +
     "- Produksion Muzikor (beat, aranzhim, çdo zhanër)\n" +
     "- Konsulencë Audio\n\n" +
-    "Orari: E Hënë – E Shtunë 09:00–20:00, E Diel mbyllur.\n" +
-    "Adresa: Rruga 'Dëshmorët e Kombit', Prishtinë.\n" +
+    "Orari: E Hënë – E Shtunë 12:00–02:00, E Diel mbyllur.\n" +
+    "Adresa: Prishtinë, Kosovë.\n" +
     "Email: info@trustmusice.al | Tel: +383 48 317 357.\n\n" +
     "RREGULLA TË RËNDËSISHME:\n" +
     "1. Përgjigju GJITHMONË në shqip, shkurt dhe miqësisht.\n" +
@@ -98,10 +98,10 @@
   // --- Inject HTML ---
   var html =
     '<button id="tm-chat-btn" aria-label="Hap asistentin">♫<span class="dot"></span></button>' +
-    '<div id="tm-chat" role="dialog" aria-label="Trust Music Asistent">' +
+    '<div id="tm-chat" role="dialog" aria-label="Trust Music™ Asistent">' +
       '<div id="tm-chat-head">' +
         '<div id="tm-chat-ava">♫</div>' +
-        '<div><div id="tm-chat-title">Trust Music AI</div><div id="tm-chat-sub">Asistenti i studios — Online</div></div>' +
+        '<div><div id="tm-chat-title">Trust Music™ AI</div><div id="tm-chat-sub">Asistenti i studios — Online</div></div>' +
         '<button id="tm-chat-close" aria-label="Mbyll">✕</button>' +
       '</div>' +
       '<div id="tm-chat-body"></div>' +
@@ -166,7 +166,7 @@
   }
 
   function greet() {
-    addMsg("bot", "Përshëndetje! 👋 Jam asistenti i Trust Music. Si mund t'ju ndihmoj?");
+    addMsg("bot", "Përshëndetje! 👋 Jam asistenti i Trust Music™. Si mund t'ju ndihmoj?");
   }
 
   function toggleForm(show) {
@@ -246,7 +246,7 @@
     var pretty = d.toLocaleDateString("sq-AL", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
     // Dërgo rezervimin në WhatsApp
-    var waMsg = "🎶 REZERVIM I RI — Trust Music\n\n" +
+    var waMsg = "🎶 REZERVIM I RI — Trust Music™\n\n" +
       "• Emri: " + name + "\n" +
       (phone ? "• Telefoni: " + phone + "\n" : "") +
       "• Shërbimi: " + service + "\n" +

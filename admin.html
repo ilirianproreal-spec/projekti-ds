@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Rezervimet — Trust Music (Admin)</title>
+<title>Rezervimet — Trust Music™ (Admin)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@ tr:hover{background:#1d1d1d}
   <!-- Login -->
   <div id="login">
     <div class="lock">🔐</div>
-    <h2>Trust Music — Admin</h2>
+    <h2>Trust Music™ — Admin</h2>
     <p>Shkruaj fjalëkalimin për të parë rezervimet</p>
     <input type="password" id="pw" placeholder="••••••" autocomplete="off">
     <button onclick="login()">Hyr</button>
@@ -144,7 +144,7 @@ function render(rows) {
 
   rows.forEach(function(b, i) {
     var phone = b.phone || '';
-    var wa = 'https://wa.me/' + phone.replace(/\D/g, '') + '?text=' + encodeURIComponent('Përshëndetje ' + b.name + ', në lidhje me rezervimin tuaj në Trust Music (' + b.service + ', ' + fmtDate(b.date) + ' ' + b.time + ')');
+    var wa = 'https://wa.me/' + phone.replace(/\D/g, '') + '?text=' + encodeURIComponent('Përshëndetje ' + b.name + ', në lidhje me rezervimin tuaj në Trust Music™ (' + b.service + ', ' + fmtDate(b.date) + ' ' + b.time + ')');
     html += '<tr>' +
       '<td>' + (i+1) + '</td>' +
       '<td><b>' + esc(b.name) + '</b></td>' +
