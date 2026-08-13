@@ -43,7 +43,7 @@
   }
 
   var SYSTEM_PROMPT =
-    "Ti je asistenti virtual i 'Trust Music', studio muzikore profesionale në Prishtinë, Shqipëri. " +
+    "Ti je asistenti virtual i 'Trust Music', studio muzikore profesionale në Prishtinë, Kosovë. " +
     "Themeluar nga Krenar Batusha & And Sylejmani. Artet: Marc Hill (DJ & Producent), Ilothegoat, Ervisi, Xent, Jolle.\n\n" +
     "Shërbimet tona:\n" +
     "- Incizim Profesional (kabina akustike, mikrofona Neumann/AKG/Shure)\n" +
