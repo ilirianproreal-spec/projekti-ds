@@ -232,6 +232,24 @@
       event.preventDefault();
       var form = document.getElementById('contactForm');
       var success = document.getElementById('formSuccess');
+
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      var service = document.getElementById('service').value;
+      var date = document.getElementById('date').value;
+      var message = document.getElementById('message').value.trim();
+
+      var waMsg = "🎶 REZERVIM I RI — Trust Music\n\n" +
+        "• Emri: " + name + "\n" +
+        "• Email: " + email + "\n" +
+        (phone ? "• Telefoni: " + phone + "\n" : "") +
+        "• Shërbimi: " + service + "\n" +
+        (date ? "• Data: " + date + "\n" : "") +
+        (message ? "• Mesazhi: " + message : "");
+
+      window.open("https://wa.me/38348317357?text=" + encodeURIComponent(waMsg), "_blank");
+
       form.style.display = 'none';
       success.style.display = 'block';
       return false;

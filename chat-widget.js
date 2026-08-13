@@ -212,10 +212,20 @@
     var d = new Date(date + "T00:00:00");
     var pretty = d.toLocaleDateString("sq-AL", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
+    // Dërgo rezervimin në WhatsApp
+    var waMsg = "🎶 REZERVIM I RI — Trust Music\n\n" +
+      "• Emri: " + name + "\n" +
+      (phone ? "• Telefoni: " + phone + "\n" : "") +
+      "• Shërbimi: " + service + "\n" +
+      "• Data: " + pretty + "\n" +
+      "• Ora: " + time;
+    var waUrl = "https://wa.me/38348317357?text=" + encodeURIComponent(waMsg);
+    window.open(waUrl, "_blank");
+
     addMsg("bot", "✅ Faleminderit " + name + "!\n\nTermini juaj u rezervua:\n• Shërbimi: " + service +
       "\n• Data: " + pretty + "\n• Ora: " + time +
       (phone ? "\n• Telefoni: " + phone : "") +
-      "\n\nDo t'ju kontaktojmë për konfirmim. 🎶");
+      "\n\nRezervimi po dërgohet në WhatsApp për konfirmim. 🎶");
   });
 
   cancel.addEventListener("click", function () { toggleForm(false); });
