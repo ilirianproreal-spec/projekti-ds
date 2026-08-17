@@ -1300,3 +1300,171 @@ img {
 .nav-overlay.show {
   display: block;
 }
+
+/* ============ Studio Page ============ */
+.section.dark {
+  background: var(--bg-secondary);
+}
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.gallery-item {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--gold-glow);
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.gallery-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+}
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.lightbox.open {
+  display: flex;
+  animation: lbIn 0.25s ease-out;
+}
+@keyframes lbIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.lightbox img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 12px;
+  border: 1px solid var(--gold-glow);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+}
+.lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.lightbox-close:hover {
+  background: var(--gold);
+  color: #0a0a0a;
+  transform: rotate(90deg);
+}
+
+/* Collaborations */
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.collab-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-glow);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.collab-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+.collab-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+.collab-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+.collab-card:hover .collab-thumb img {
+  transform: scale(1.06);
+  opacity: 0.85;
+}
+.collab-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.25s;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+.collab-card:hover .collab-play {
+  opacity: 1;
+}
+.collab-info {
+  padding: 16px 18px;
+}
+.collab-info h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.collab-info p {
+  color: var(--text-muted, #9a9a9a);
+  font-size: 0.82rem;
+}
+.collab-badge {
+  display: inline-block;
+  background: var(--gold-glow);
+  color: var(--gold);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .collab-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .collab-grid { grid-template-columns: 1fr; }
+}
