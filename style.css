@@ -311,6 +311,15 @@ img {
   letter-spacing: 0.5px;
 }
 
+.hero-collabs {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+}
+.hero-collabs strong {
+  color: var(--gold);
+}
+
 .hero-content h1 .highlight {
   background: linear-gradient(135deg, var(--gold-light), var(--gold));
   -webkit-background-clip: text;
