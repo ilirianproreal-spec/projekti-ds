@@ -1126,6 +1126,15 @@ img {
   align-items: flex-start;
   gap: 16px;
   margin-bottom: 24px;
+  position: relative;
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s, background 0.2s;
+}
+.contact-item-text a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .contact-item-icon {
