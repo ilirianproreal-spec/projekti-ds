@@ -997,7 +997,15 @@ img {
   direction: ltr;
 }
 
+.service-block-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
 .service-block-icon {
+  overflow: hidden;
   width: 100%;
   aspect-ratio: 16/10;
   background: var(--bg-card);
