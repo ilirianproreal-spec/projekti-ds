@@ -25,6 +25,14 @@
     for (var j = 0; j < ph.length; j++) {
       if (ph[j].getAttribute('data-ph-en') === null) ph[j].setAttribute('data-ph-en', ph[j].getAttribute('placeholder') || '');
     }
+    var ar = document.querySelectorAll('[data-sq-aria]');
+    for (var a = 0; a < ar.length; a++) {
+      if (ar[a].getAttribute('data-en-aria') === null) ar[a].setAttribute('data-en-aria', ar[a].getAttribute('aria-label') || '');
+    }
+    var ti = document.querySelectorAll('[data-sq-title]');
+    for (var k = 0; k < ti.length; k++) {
+      if (ti[k].getAttribute('data-en-title') === null) ti[k].setAttribute('data-en-title', ti[k].getAttribute('title') || '');
+    }
     if (!document.documentElement.getAttribute('data-title-en')) {
       document.documentElement.setAttribute('data-title-en', document.title);
     }
@@ -44,6 +52,16 @@
     var ph = document.querySelectorAll('[data-ph-sq]');
     for (var j = 0; j < ph.length; j++) {
       ph[j].setAttribute('placeholder', (lang === 'sq') ? ph[j].getAttribute('data-ph-sq') : ph[j].getAttribute('data-ph-en'));
+    }
+
+    var ar = document.querySelectorAll('[data-sq-aria]');
+    for (var a = 0; a < ar.length; a++) {
+      ar[a].setAttribute('aria-label', (lang === 'sq') ? ar[a].getAttribute('data-sq-aria') : ar[a].getAttribute('data-en-aria'));
+    }
+
+    var ti = document.querySelectorAll('[data-sq-title]');
+    for (var k = 0; k < ti.length; k++) {
+      ti[k].setAttribute('title', (lang === 'sq') ? ti[k].getAttribute('data-sq-title') : ti[k].getAttribute('data-en-title'));
     }
 
     var html = document.documentElement;

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-title-sq="Projektet — Trust Music™">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trust Music™ projects — every song produced in our studio, grouped by artist." data-desc-sq="Projektet e Trust Music™ — të gjitha këngët e realizuara në studion tonë, të grupuara sipas artistit.">
+  <title>Projects — Trust Music™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">♫</div>
+        <span>Trust Music™</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-sq="Kreu">Home</a></li>
+        <li><a href="sherbime.html" data-sq="Shërbimet">Services</a></li>
+        <li><a href="projektet.html" class="active" data-sq="Projektet">Projects</a></li>
+        <li><a href="studio.html" data-sq="Studio">Studio</a></li>
+        <li><a href="kontakt.html" data-sq="Kontakti">Contact</a></li>
+        <li><a href="kontakt.html" class="nav-cta" data-sq="Rezervo Tani">Book Now</a></li>
+        <li class="lang-item"><div class="lang-switch" id="langSwitch" aria-label="Language"></div></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 data-sq="Projektet <span class=&quot;highlight&quot;>Tona</span>">Our <span class="highlight">Projects</span></h1>
+      <p data-sq="Të gjitha këngët e realizuara në Trust Music™ — zgjedh një album dhe dëgjo.">Every song made at Trust Music™ — pick an album and listen.</p>
+    </div>
+  </section>
+
+  <!-- Albums -->
+  <section class="section" id="projektet">
+    <div class="container">
+      <div class="albums-grid" id="albumsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Album modal -->
+  <div class="album-modal" id="albumModal" data-open="0">
+    <div class="album-modal-inner">
+      <button class="album-close" id="albumClose" aria-label="Close" data-sq-aria="Mbyll">×</button>
+      <img class="album-cover" id="albumCover" src="" alt="">
+      <div class="album-head">
+        <h3 id="albumTitle"></h3>
+        <p id="albumCount"></p>
+      </div>
+      <div class="album-songs" id="albumSongs"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">♫</div>
+            <span>Trust Music™</span>
+          </a>
+          <p data-sq="Trust Music™ — themeluar nga Krenar Batusha &amp; And Sylejmani. Marc Hill Producent &amp; DJ. Prishtinë.">Trust Music™ — founded by Krenar Batusha &amp; And Sylejmani. Marc Hill Producer &amp; DJ. Prishtina.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-sq="Faqet">Pages</h4>
+          <ul>
+            <li><a href="index.html" data-sq="Kreu">Home</a></li>
+            <li><a href="sherbime.html" data-sq="Shërbimet">Services</a></li>
+            <li><a href="projektet.html" data-sq="Projektet">Projects</a></li>
+            <li><a href="kontakt.html" data-sq="Kontakti">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-sq="Shërbimet">Services</h4>
+          <ul>
+            <li><a href="sherbime.html#incizim" data-sq="Incizim">Recording</a></li>
+            <li><a href="sherbime.html#miks" data-sq="Miks &amp; Master">Mix &amp; Master</a></li>
+            <li><a href="sherbime.html#produksion" data-sq="Produksion">Production</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-sq="Kontakti">Contact</h4>
+          <ul>
+            <li><a href="mailto:trust.music2025@gmail.com">trust.music2025@gmail.com</a></li>
+            <li><a href="tel:+38348317357">+383 48 317 357</a></li>
+            <li><a href="#" data-sq="Prishtinë, Kosovë">Prishtina, Kosovo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-sq="© 2026 Trust Music™. Të gjitha të drejtat e rezervuara.">© 2026 Trust Music™. All rights reserved.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/trustmusic.tm/" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+          <a href="https://www.tiktok.com/@trustmusic.tm" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    (function() {
+      var toggle = document.getElementById('menuToggle');
+      var navLinks = document.getElementById('navLinks');
+      var overlay = document.getElementById('navOverlay');
+
+      function closeMenu() {
+        toggle.classList.remove('open');
+        navLinks.classList.remove('open');
+        overlay.classList.remove('show');
+      }
+
+      toggle.addEventListener('click', function() {
+        var isOpen = navLinks.classList.contains('open');
+        if (isOpen) { closeMenu(); }
+        else { toggle.classList.add('open'); navLinks.classList.add('open'); overlay.classList.add('show'); }
+      });
+
+      overlay.addEventListener('click', closeMenu);
+      navLinks.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', closeMenu); });
+    })();
+  </script>
+  <script>
+    /* Albumet — grilë kartash, modal me këngët */
+    (function () {
+      var ALBUMS = [{"name": "lluni", "cover": "https://img.youtube.com/vi/eyXxsmG9y7M/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=eyXxsmG9y7M", "title": "lluni — RoadRunner", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=yL6ZKosDULs", "title": "lluni — LIFESTYLE", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=tZRzKIXzPG8", "title": "lluni ft. BUTA — MEMPHIS", "type": "Official Video"}]}, {"name": "JOLLE", "cover": "https://img.youtube.com/vi/x1yYG4xGrYw/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=x1yYG4xGrYw", "title": "JOLLE — BO ME KRY", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=SUiHD3Nl1eM", "title": "JOLLE x XENT — ORIGINALLAT", "type": "Official Video"}]}, {"name": "ILO", "cover": "https://img.youtube.com/vi/waovAKZMpb4/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=waovAKZMpb4", "title": "ILO x SINGI — ÇANTA", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=u5cMzDxnQrs", "title": "ILO — JASHTE", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=fk46lV-W2jI", "title": "ILO — APET", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=PgVgCf9DT-Y", "title": "ILO — FVCK N WAKE", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=3Ccq0PLdbBU", "title": "ILO — FMG", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=WsUeXhd6cn8", "title": "ILO — FEVER", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=Z33DX0iPkjQ", "title": "ILO — NSFW", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=MELVzk5-ceQ", "title": "ILO — YUNGIN", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=ydflLDqczw4", "title": "ILO x BUTA — KOM NI", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=KHMYpyufGTg", "title": "ILO — GGG", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=40TzIfPA5KQ", "title": "ILO — SDU VEMENDJE", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=aiU7FL7Wvao", "title": "ILO — CHANTELLE", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=Gdcr0l4V978", "title": "ILO — DEALIN' W GOD", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=LxQahYMHPAc", "title": "ILO x AGO x BUTA — VENDI JEM", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=axZ-0ZfydJI", "title": "ILO x NINO — HEAVY METAL", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=8OoWzhwuhaA", "title": "ILO — WOWOWO", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=3qy8EmkmBv0", "title": "ILO — KY SO DISSTRACK", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=T9dwPHK06oE", "title": "ILO x AGO — OPP/OFF", "type": "Official Visualizer"}, {"href": "https://www.youtube.com/watch?v=MxVpvu-Pmlc", "title": "ILO — SDI ME DASHT", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=rWdU2qL6kxs", "title": "ILO — MIREMENGJES x KYQE", "type": "Official Video"}]}, {"name": "ERVIS", "cover": "https://img.youtube.com/vi/QA3nl9tETg4/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=QA3nl9tETg4", "title": "ERVIS x NINO — KUR JE TI", "type": "Official Visualizer"}, {"href": "https://www.youtube.com/watch?v=_pdbY5Uuxw4", "title": "ERVIS — ÇKA KENA PAS", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=-BnMmcYKkuM", "title": "ERVIS — E DI M'PRET", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=bbCJHb8OELo", "title": "ERVIS — DESIRE", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=D57Zqni5EaE", "title": "ERVIS — KUR S'JE TI", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=ed389Qw9PN4", "title": "ERVIS — MOMENT", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=2Vb8HEl5bZQ", "title": "ERVIS — DU ME T'PA", "type": "Official Video"}]}, {"name": "XENT", "cover": "https://img.youtube.com/vi/H53FjgIbc8Q/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=H53FjgIbc8Q", "title": "XENT — S’FOLIN SHQIP", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=QTZdH4ucjNI", "title": "XENT — M.O.T.M ft GAZ", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=kw5oSS65Iw8", "title": "XENT — COLD PALMER", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=4sWg5cfe-tQ", "title": "XENT — TEN TEN", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=RdgfOlZbOYI", "title": "XENT — FW ME", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=D9GsGQJE6Kw", "title": "XENT — NAJSEN T'RE", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=_CGDJgQSOLM", "title": "XENT — NUK E DU", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=qrnIzRgA874", "title": "XENT — VEC KCE", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=L8vZ76ZljGw", "title": "XENT — RUDE BWOY", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=fUCgVF7IE5A", "title": "XENT — SLOW SLOW", "type": "Official Audio"}, {"href": "https://www.youtube.com/watch?v=ak9TaPGBO-I", "title": "Xent — Nuk m'vyn ft. ILO", "type": "Official Video"}]}, {"name": "Londrim", "cover": "https://img.youtube.com/vi/W2xeqlI3wUw/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=W2xeqlI3wUw", "title": "Londrim — NGOM", "type": "Official Video"}]}, {"name": "Buta", "cover": "https://img.youtube.com/vi/34dF9U7sKZU/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=34dF9U7sKZU", "title": "Buta — Alonely (ft. Ilo)", "type": "Official Video"}]}, {"name": "AND & Marc Hill", "cover": "https://img.youtube.com/vi/ufEPHrt2jmY/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=ufEPHrt2jmY", "title": "AND & Marc Hill ft Dabó — Where Love Lies", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=LT3z9YkFRVI", "title": "AND & Marc Hill ft ILO — Qysh??", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=1TSKuKK0aYQ", "title": "AND & Marc Hill — Suke Suke", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=aaXPWwsBVHs", "title": "AND & Marc Hill — Makin' Cash", "type": "Official Video"}, {"href": "https://www.youtube.com/watch?v=-nBBahRM0ks", "title": "AND & Marc Hill ft Jolle — Zhapan", "type": "Official Video"}]}, {"name": "NINO", "cover": "https://img.youtube.com/vi/2Z6zzZEp86o/hqdefault.jpg", "songs": [{"href": "https://www.youtube.com/watch?v=2Z6zzZEp86o", "title": "NINO — 31 EXTENDO X ILO X JOLLE", "type": "Official Video"}]}];
+      var grid = document.getElementById('albumsGrid');
+      var modal = document.getElementById('albumModal');
+      function tr(en, sq) { return document.documentElement.lang === 'sq' ? sq : en; }
+      function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+      function render() {
+        var h = '';
+        for (var i = 0; i < ALBUMS.length; i++) {
+          var a = ALBUMS[i];
+          h += '<div class="album-card" data-i="' + i + '">' +
+               '<img src="' + a.cover + '" alt="' + esc(a.name) + '" loading="lazy">' +
+               '<div class="album-info"><h3>' + esc(a.name) + '<\/h3>' +
+               '<p>' + a.songs.length + ' ' + tr('songs', 'këngë') + '<\/p><\/div><\/div>';
+        }
+        grid.innerHTML = h;
+        if (modal.classList.contains('open')) fillModal(parseInt(modal.getAttribute('data-open') || '0', 10));
+      }
+      function fillModal(i) {
+        var a = ALBUMS[i];
+        document.getElementById('albumCover').src = a.cover;
+        document.getElementById('albumCover').alt = a.name;
+        document.getElementById('albumTitle').textContent = a.name;
+        document.getElementById('albumCount').textContent = a.songs.length + ' ' + tr('songs', 'këngë');
+        var h = '';
+        for (var s = 0; s < a.songs.length; s++) {
+          var sg = a.songs[s];
+          h += '<a class="album-song" href="' + sg.href + '" target="_blank" rel="noopener">' +
+               '<span class="play">▶<\/span>' + esc(sg.title) + '<\/a>';
+        }
+        document.getElementById('albumSongs').innerHTML = h;
+      }
+      grid.addEventListener('click', function (e) {
+        var c = e.target && e.target.closest ? e.target.closest('.album-card') : null;
+        if (!c) return;
+        var i = parseInt(c.getAttribute('data-i'), 10);
+        modal.setAttribute('data-open', String(i));
+        fillModal(i);
+        modal.classList.add('open');
+      });
+      document.getElementById('albumClose').addEventListener('click', function () { modal.classList.remove('open'); });
+      modal.addEventListener('click', function (e) { if (e.target === modal) modal.classList.remove('open'); });
+      window.addEventListener('trustlang', render);
+      render();
+    })();
+  </script>
+  <script src="lang.js"></script>
+  <script src="chat-widget.js"></script>
+</body>
+</html>
