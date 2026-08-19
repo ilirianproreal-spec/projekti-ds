@@ -57,29 +57,37 @@
         </div>
       </div>
       <div class="hero-visual fade-up">
-        <div class="hero-eq">
-          <div class="hero-eq-ring"></div>
-          <div class="eq-bars">
-            <div class="eq-bar" style="--dur: 0.8s; --h: 60%;"></div>
-            <div class="eq-bar" style="--dur: 0.6s; --h: 85%;"></div>
-            <div class="eq-bar" style="--dur: 0.9s; --h: 45%;"></div>
-            <div class="eq-bar" style="--dur: 0.7s; --h: 100%;"></div>
-            <div class="eq-bar" style="--dur: 0.5s; --h: 70%;"></div>
-            <div class="eq-bar" style="--dur: 0.85s; --h: 55%;"></div>
-            <div class="eq-bar" style="--dur: 0.65s; --h: 90%;"></div>
-            <div class="eq-bar" style="--dur: 0.75s; --h: 65%;"></div>
-            <div class="eq-bar" style="--dur: 0.55s; --h: 80%;"></div>
-            <div class="eq-bar" style="--dur: 0.95s; --h: 40%;"></div>
-            <div class="eq-bar" style="--dur: 0.7s; --h: 75%;"></div>
-            <div class="eq-bar" style="--dur: 0.6s; --h: 95%;"></div>
-            <div class="eq-bar" style="--dur: 0.8s; --h: 50%;"></div>
-            <div class="eq-bar" style="--dur: 0.5s; --h: 85%;"></div>
+        <div class="hero-slider" id="heroSlider">
+          <img src="brand-logo.png" alt="Trust Music™ Logo" class="hero-slide hero-slide-logo active">
+          <img src="brand-studio.jpg" alt="Trust Music™ Studio" class="hero-slide">
+          <div class="hero-dots">
+            <span class="hero-dot active"></span>
+            <span class="hero-dot"></span>
           </div>
         </div>
-              
       </div>
     </div>
   </section>
+  <script>
+    // Hero slider — logo + foto studioje (rrëshqet vetë)
+    (function () {
+      var slides = document.querySelectorAll('#heroSlider .hero-slide');
+      var dots = document.querySelectorAll('#heroSlider .hero-dot');
+      var i = 0, t;
+      function show(n) {
+        i = (n + slides.length) % slides.length;
+        for (var k = 0; k < slides.length; k++) {
+          slides[k].classList.toggle('active', k === i);
+          dots[k].classList.toggle('active', k === i);
+        }
+      }
+      function auto() { t = setInterval(function () { show(i + 1); }, 3500); }
+      for (var d = 0; d < dots.length; d++) (function (d) {
+        dots[d].addEventListener('click', function () { clearInterval(t); show(d); auto(); });
+      })(d);
+      auto();
+    })();
+  </script>
 
   <!-- Collaborations -->
   <section class="section dark" id="bashkepunime">
