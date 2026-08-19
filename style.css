@@ -1477,3 +1477,10 @@ img {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .collab-grid { grid-template-columns: 1fr; }
 }
+
+/* --- Language switch (EN/SQ) --- */
+.lang-switch { display: flex; gap: 2px; background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 999px; padding: 3px; }
+.lang-switch button { background: none; border: none; color: var(--text-muted); font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; padding: 4px 11px; border-radius: 999px; cursor: pointer; letter-spacing: .5px; transition: .2s; line-height: 1.4; }
+.lang-switch button:hover { color: #fff; }
+.lang-switch button.active { background: var(--gold); color: #0a0a0a; }
+@media (max-width: 640px) { .lang-item { display: flex; justify-content: center; margin-top: 14px; } }

@@ -42,22 +42,43 @@
     });
   }
 
-  var SYSTEM_PROMPT =
-    "Ti je asistenti virtual i 'Trust Music™', studio muzikore profesionale në Prishtinë, Kosovë. " +
-    "Themeluar nga Krenar Batusha & And Sylejmani. Artet: Marc Hill (DJ & Producent), Ilothegoat, Ervisi, Xent, Jolle.\n\n" +
-    "Shërbimet tona:\n" +
-    "- Incizim Profesional (kabina akustike, mikrofona Neumann/AKG/Shure)\n" +
-    "- Miks & Master\n" +
-    "- Produksion Muzikor (beat, aranzhim, çdo zhanër)\n" +
-    "- Konsulencë Audio\n\n" +
-    "Orari: E Hënë – E Shtunë 12:00–02:00, E Diel mbyllur.\n" +
-    "Adresa: Prishtinë, Kosovë.\n" +
-    "Email: info@trustmusice.al | Tel: +383 48 317 357.\n\n" +
-    "RREGULLA TË RËNDËSISHME:\n" +
-    "1. Përgjigju GJITHMONË në shqip, shkurt dhe miqësisht.\n" +
-    "2. MOS jep asnjë çmim/kosto — nëse pyesin për çmime, thuaj 'Na kontakto për një ofertë të personalizuar.'\n" +
-    "3. Nëse klienti dëshiron të rezervojë një termin, drejtoje te butoni '📅 Rezervo Termin' dhe kërko: emrin, shërbimin, datën dhe orën.\n" +
-    "4. Mos i shpik informacione. Qëndro te faktet e studios.";
+  var PROMPTS = {
+    en: "You are the virtual assistant of 'Trust Music™', a professional music studio in Prishtina, Kosovo. " +
+      "Founded by Krenar Batusha & And Sylejmani. Artists: Marc Hill (Producer & DJ), Ilothegoat, Ervisi, Xent, Jolle.\n\n" +
+      "Our services:\n" +
+      "- Professional Recording (acoustic booth, Neumann TLM 102 microphone)\n" +
+      "- Mix & Master\n" +
+      "- Music Production (beats, arrangement, any genre)\n" +
+      "- Audio Consulting\n\n" +
+      "Hours: Monday – Saturday 12:00–02:00, Sunday closed.\n" +
+      "Address: Prishtina, Kosovo.\n" +
+      "Email: info@trustmusice.al | Tel: +383 48 317 357.\n\n" +
+      "IMPORTANT RULES:\n" +
+      "1. ALWAYS reply in English, briefly and friendly.\n" +
+      "2. NEVER give any price/cost — if asked about prices, say 'Contact us for a personalized quote.'\n" +
+      "3. If the client wants to book a session, point them to the '📅 Book a Session' button and ask for: name, service, date and time.\n" +
+      "4. Do not invent information. Stick to the studio's facts.",
+    sq: "Ti je asistenti virtual i 'Trust Music™', studio muzikore profesionale në Prishtinë, Kosovë. " +
+      "Themeluar nga Krenar Batusha & And Sylejmani. Artet: Marc Hill (Producent & DJ), Ilothegoat, Ervisi, Xent, Jolle.\n\n" +
+      "Shërbimet tona:\n" +
+      "- Incizim Profesional (kabina akustike, mikrofona Neumann TLM 102)\n" +
+      "- Miks & Master\n" +
+      "- Produksion Muzikor (beat, aranzhim, çdo zhanër)\n" +
+      "- Konsulencë Audio\n\n" +
+      "Orari: E Hënë – E Shtunë 12:00–02:00, E Diel mbyllur.\n" +
+      "Adresa: Prishtinë, Kosovë.\n" +
+      "Email: info@trustmusice.al | Tel: +383 48 317 357.\n\n" +
+      "RREGULLA TË RËNDËSISHME:\n" +
+      "1. Përgjigju GJITHMONË në shqip, shkurt dhe miqësisht.\n" +
+      "2. MOS jep asnjë çmim/kosto — nëse pyesin për çmime, thuaj 'Na kontakto për një ofertë të personalizuar.'\n" +
+      "3. Nëse klienti dëshiron të rezervojë një termin, drejtoje te butoni '📅 Rezervo Termin' dhe kërko: emrin, shërbimin, datën dhe orën.\n" +
+      "4. Mos i shpik informacione. Qëndro te faktet e studios."
+  };
+
+  function curLang() {
+    try { return localStorage.getItem("trust-lang") === "sq" ? "sq" : "en"; } catch (e) { return "en"; }
+  }
+  function getPrompt() { return PROMPTS[curLang()]; }
 
   // --- Inject CSS ---
   var css = document.createElement("style");
@@ -137,8 +158,69 @@
   var form = document.getElementById("tm-form");
   var cancel = document.getElementById("tm-cancel");
 
+  // --- Bilingual UI strings ---
+  var UI = {
+    en: {
+      sub: "Studio assistant — Online",
+      qs: ["🎙️ Services", "📅 Booking", "📍 Location"],
+      qqs: ["What services do you offer?", "How can I book a session?", "Where is the studio located?"],
+      formTitle: "📅 Book a Session", cancel: "Cancel",
+      labels: ["Full name *", "Phone", "Service *", "Date *", "Time *"],
+      ph: ["Full name", "+383 48 317 357"],
+      svc: ["Choose...", "Professional Recording", "Mix & Master", "Music Production", "Audio Consulting", "Other"],
+      submit: "Confirm Booking ✓", inputPh: "Type your message...",
+      greet: "Hello! 👋 I'm the Trust Music™ assistant. How can I help you?",
+      err: "Sorry, I had a technical problem. Please try again in a few moments.",
+      thx1: "✅ Thank you ", thx2: "!\n\nYour session has been booked:\n• Service: ",
+      thx3: "\n• Date: ", thx4: "\n• Time: ", thx5: "\n• Phone: ",
+      thx6: "\n\nThe booking is being sent to WhatsApp for confirmation. 🎶",
+      waTitle: "NEW BOOKING", waName: "Name", waPhone: "Phone", waSvc: "Service", waDate: "Date", waTime: "Time"
+    },
+    sq: {
+      sub: "Asistenti i studios — Online",
+      qs: ["🎙️ Shërbimet", "📅 Rezervim", "📍 Adresa"],
+      qqs: ["Çfarë shërbimesh ofroni?", "Si mund të rezervoj një termin?", "Ku ndodhet studioja?"],
+      formTitle: "📅 Rezervo Terminin", cancel: "Anulo",
+      labels: ["Emri i plotë *", "Telefoni", "Shërbimi *", "Data *", "Ora *"],
+      ph: ["Emri dhe mbiemri", "+383 48 317 357"],
+      svc: ["Zgjidh...", "Incizim Profesional", "Miks & Master", "Produksion Muzikor", "Konsulencë Audio", "Tjetër"],
+      submit: "Konfirmo Rezervimin ✓", inputPh: "Shkruaj mesazhin...",
+      greet: "Përshëndetje! 👋 Jam asistenti i Trust Music™. Si mund t'ju ndihmoj?",
+      err: "Më falni, kisha një problem teknik. Ju lutem provoni përsëri në pak çaste.",
+      thx1: "✅ Faleminderit ", thx2: "!\n\nTermini juaj u rezervua:\n• Shërbimi: ",
+      thx3: "\n• Data: ", thx4: "\n• Ora: ", thx5: "\n• Telefoni: ",
+      thx6: "\n\nRezervimi po dërgohet në WhatsApp për konfirmim. 🎶",
+      waTitle: "REZERVIM I RI", waName: "Emri", waPhone: "Telefoni", waSvc: "Shërbimi", waDate: "Data", waTime: "Ora"
+    }
+  };
+  var chatLang = "en";
+
+  function applyChatLang(lang) {
+    chatLang = (lang === "sq") ? "sq" : (lang || curLang());
+    var u = UI[chatLang] || UI.en;
+    if (messages[0]) messages[0].content = getPrompt();
+    var sub = document.getElementById("tm-chat-sub"); if (sub) sub.textContent = u.sub;
+    var qs = document.querySelectorAll(".tm-quick-btn");
+    for (var qi = 0; qi < qs.length; qi++) {
+      qs[qi].textContent = u.qs[qi];
+      qs[qi].setAttribute("data-q", u.qqs[qi]);
+    }
+    var ft = document.querySelector("#tm-form > div > b"); if (ft) ft.textContent = u.formTitle;
+    var cb = document.getElementById("tm-cancel"); if (cb) cb.textContent = u.cancel;
+    var labs = document.querySelectorAll("#tm-form label");
+    for (var li2 = 0; li2 < labs.length; li2++) labs[li2].textContent = u.labels[li2];
+    var opts = document.querySelectorAll("#tm-b-service option");
+    for (var oi = 0; oi < opts.length; oi++) opts[oi].textContent = u.svc[oi];
+    var nm = document.getElementById("tm-b-name"); if (nm) nm.placeholder = u.ph[0];
+    var ph = document.getElementById("tm-b-phone"); if (ph) ph.placeholder = u.ph[1];
+    var sb = document.getElementById("tm-submit"); if (sb) sb.textContent = u.submit;
+    var tx = document.getElementById("tm-chat-text"); if (tx) tx.placeholder = u.inputPh;
+  }
+  window.addEventListener("trustlang", function (e) { applyChatLang(e.detail); });
+  applyChatLang(curLang());
+
   // --- Conversation state ---
-  var messages = [{ role: "system", content: SYSTEM_PROMPT }];
+  var messages = [{ role: "system", content: getPrompt() }];
   var isOpen = false;
 
   function addMsg(role, content) {
@@ -166,7 +248,7 @@
   }
 
   function greet() {
-    addMsg("bot", "Përshëndetje! 👋 Jam asistenti i Trust Music™. Si mund t'ju ndihmoj?");
+    addMsg("bot", (UI[chatLang] || UI.en).greet);
   }
 
   function toggleForm(show) {
