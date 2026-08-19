@@ -8,9 +8,9 @@
 
   // ⚠️ KUJDES: Ky çelës API është i ekspozuar në browser.
   // Për prodhim real, vendose në një proxy/serverless (Vercel).
-  var GROQ_API_KEY = "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";
+  var GROQ_API_KEY = "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";
   var GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-  var MODEL = "llama-3.3-70b-versatile";
+  var MODEL = "openai/gpt-oss-20b";
 
   // Supabase — ruajtje qendrore e rezervimeve (pronari i sheh në admin.html)
   var SUPABASE_URL = "https://cedzpbifgveuyleaxibo.supabase.co";
@@ -272,7 +272,10 @@
         throw new Error("API " + res.status + (err ? " — " + err : ""));
       }
       var data = await res.json();
-      return data.choices[0].message.content;
+      var content = data.choices[0].message.content || "";
+      content = content.replace(/<think>[\s\S]*?<\/think>/g, "");
+      content = content.replace(/<think[\s\S]*$/g, "");
+      return content.trim();
     } catch (e) {
       return null;
     }

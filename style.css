@@ -1315,11 +1315,23 @@ img {
   background: var(--bg-secondary);
 }
 
-/* Gallery */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* Gallery — horizontal scroll */
+.gallery-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gallery-scroll {
+  display: flex;
   gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 6px 2px 14px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.gallery-scroll::-webkit-scrollbar {
+  display: none;
 }
 .gallery-item {
   position: relative;
@@ -1328,7 +1340,10 @@ img {
   border: 1px solid var(--gold-glow);
   cursor: pointer;
   aspect-ratio: 4 / 3;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  width: 300px;
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
 .gallery-item img {
   width: 100%;
@@ -1338,7 +1353,6 @@ img {
   transition: transform 0.4s ease;
 }
 .gallery-item:hover {
-  transform: translateY(-5px);
   border-color: var(--gold);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
 }
@@ -1391,6 +1405,29 @@ img {
   color: #0a0a0a;
   transform: rotate(90deg);
 }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.lightbox-nav:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0a0a0a;
+}
+.lightbox-prev { left: 18px; }
+.lightbox-next { right: 18px; }
 
 /* Collaborations */
 .collab-grid {
@@ -1470,11 +1507,11 @@ img {
 }
 
 @media (max-width: 900px) {
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery-item { width: 240px; flex-basis: 240px; }
   .collab-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gallery-item { width: 200px; flex-basis: 200px; }
   .collab-grid { grid-template-columns: 1fr; }
 }
 

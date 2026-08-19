@@ -18,7 +18,7 @@
   <nav class="navbar scrolled" id="navbar">
     <div class="container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">♫</div>
+        <img src="trust%20music%20jpeg.jpg" alt="Trust Music™" class="logo-img">
         <span>Trust Music™</span>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">
@@ -50,9 +50,11 @@
       <div class="section-header">
         <div class="section-badge" data-sq="Galeria">Gallery</div>
         <h2 data-sq="Studioja <span class=&quot;highlight&quot;>Nga Brenda</span>">The Studio <span class="highlight">From Inside</span></h2>
-        <p data-sq="Kliko mbi çdo foto për ta parë më të madhe.">Click any photo to view it larger.</p>
+        <p data-sq="Rrëshqit nëpër fotot tona — kliko mbi çdo foto për ta parë më të madhe.">Scroll through our photos — click any photo to view it larger.</p>
       </div>
-      <div class="gallery-grid">
+      <div class="gallery-wrap">
+        <button class="car-arrow" id="galPrev" aria-label="Previous">‹</button>
+        <div class="gallery-scroll" id="galleryScroll">
         <div class="gallery-item"><img src="IMG_9913.jpg" alt="Trust Music™ Studio" loading="lazy"></div>
         <div class="gallery-item"><img src="IMG_9914.jpg" alt="Trust Music™ Studio" loading="lazy"></div>
         <div class="gallery-item"><img src="IMG_9916.jpg" alt="Trust Music™ Studio" loading="lazy"></div>
@@ -66,6 +68,8 @@
         <div class="gallery-item"><img src="IMG_9926.jpg" alt="Trust Music™ Studio" loading="lazy"></div>
         <div class="gallery-item"><img src="IMG_9927.jpg" alt="Trust Music™ Studio" loading="lazy"></div>
         <div class="gallery-item"><img src="studio.jpg" alt="Trust Music™ Studio" loading="lazy"></div>
+        </div>
+        <button class="car-arrow" id="galNext" aria-label="Next">›</button>
       </div>
     </div>
   </section>
@@ -76,7 +80,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo">
-            <div class="logo-icon">♫</div>
+            <img src="trust%20music%20jpeg.jpg" alt="Trust Music™" class="logo-img">
             <span>Trust Music™</span>
           </a>
           <p data-sq="Trust Music™ — themeluar nga Krenar Batusha &amp; And Sylejmani. Marc Hill Producent &amp; DJ. Studio muzikore në Prishtinë.">Trust Music™ — founded by Krenar Batusha &amp; And Sylejmani. Marc Hill Producer &amp; DJ. Music studio in Prishtina.</p>
@@ -109,7 +113,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>data-sq="© 2026 Trust Music™. Të gjitha të drejtat e rezervuara.">© 2026 Trust Music™. All rights reserved.</p>
+        <p data-sq="© 2026 Trust Music™. Të gjitha të drejtat e rezervuara.">© 2026 Trust Music™. All rights reserved.</p>
         <div class="social-links">
           <a href="https://linktr.ee/trustmusic.tm" target="_blank" rel="noopener" aria-label="Linktree">🔗</a>
           <a href="https://www.instagram.com/trustmusic.tm/" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
@@ -124,6 +128,8 @@
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">‹</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">›</button>
     <button class="lightbox-close" id="lightboxClose" aria-label="Close" data-sq-aria="Mbyll">×</button>
   </div>
 
@@ -149,23 +155,50 @@
       overlay.addEventListener('click', closeMenu);
     })();
 
-    // Gallery lightbox
+    // Gallery horizontal scroll + lightbox
+    (function() {
+      var track = document.getElementById('galleryScroll');
+      function step() {
+        var item = track.querySelector('.gallery-item');
+        return item ? item.getBoundingClientRect().width + 16 : 300;
+      }
+      document.getElementById('galPrev').addEventListener('click', function () {
+        track.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+      document.getElementById('galNext').addEventListener('click', function () {
+        track.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+    })();
+
+    // Gallery lightbox with prev/next navigation
     (function() {
       var lb = document.getElementById('lightbox');
       var lbImg = document.getElementById('lightboxImg');
-      document.querySelectorAll('.gallery-item img').forEach(function(img) {
-        img.addEventListener('click', function() {
-          lbImg.src = img.src;
-          lb.classList.add('open');
-        });
+      var imgs = Array.prototype.slice.call(document.querySelectorAll('.gallery-item img'));
+      var idx = 0;
+      function open(i) {
+        idx = (i + imgs.length) % imgs.length;
+        lbImg.src = imgs[idx].src;
+        lb.classList.add('open');
+      }
+      imgs.forEach(function(img, i) {
+        img.addEventListener('click', function() { open(i); });
       });
+      function step(d) { open(idx + d); }
+      document.getElementById('lightboxPrev').addEventListener('click', function() { step(-1); });
+      document.getElementById('lightboxNext').addEventListener('click', function() { step(1); });
       function closeLb() { lb.classList.remove('open'); }
       document.getElementById('lightboxClose').addEventListener('click', closeLb);
       lb.addEventListener('click', function(e) { if (e.target === lb) closeLb(); });
-      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLb(); });
+      document.addEventListener('keydown', function(e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLb();
+        else if (e.key === 'ArrowLeft') step(-1);
+        else if (e.key === 'ArrowRight') step(1);
+      });
     })();
   </script>
-  <script src="lang.js"></script>
-  <script src="chat-widget.js"></script>
+  <script src="lang.js?v=3"></script>
+  <script src="chat-widget.js?v=3"></script>
 </body>
 </html>
