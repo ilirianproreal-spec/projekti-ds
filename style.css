@@ -1360,6 +1360,42 @@ img {
   .section {
     padding: 60px 0;
   }
+
+  /* --- Mobile polish --- */
+  .page-header {
+    padding: 120px 0 56px;
+  }
+
+  .page-header h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .service-block {
+    padding: 32px 0;
+    gap: 24px;
+  }
+
+  .about-grid {
+    gap: 32px;
+  }
+
+  .cta-banner {
+    padding: 48px 24px;
+  }
 }
 
 /* --- Utility: dark glass overlay for mobile nav --- */
