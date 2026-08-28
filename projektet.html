@@ -151,14 +151,16 @@
           h += '<div class="album-card" data-i="' + i + '">' +
                '<img src="' + a.cover + '" alt="' + esc(a.name) + '" loading="lazy">' +
                '<div class="album-info"><h3>' + esc(a.name) + '<\/h3>' +
-               '<p>' + a.songs.length + ' ' + tr('songs', 'këngë') + '<\/p><\/div><\/div>';
+               '<p>' + a.songs.length + ' ' + tr('songs', 'këngë') + '<\/p>' +
+               '<p class="album-made">' + tr('Produced at Trust Music', 'Prodhuar në Trust Music') + '<\/p><\/div><\/div>';
         }
         for (var s = 0; s < SINGLES.length; s++) {
           var g = SINGLES[s];
           h += '<a class="album-card single-card" href="' + g.href + '" target="_blank" rel="noopener">' +
                '<img src="' + g.img + '" alt="' + esc(g.title) + '" loading="lazy">' +
                '<div class="album-info"><h3>' + esc(g.title) + '<\/h3>' +
-               '<p>' + esc(g.type) + '<\/p><\/div><\/a>';
+               '<p>' + esc(g.type) + '<\/p>' +
+               '<p class="album-made">' + tr('Produced at Trust Music', 'Prodhuar në Trust Music') + '<\/p><\/div><\/a>';
         }
         grid.innerHTML = h;
         if (modal.classList.contains('open')) fillModal(parseInt(modal.getAttribute('data-open') || '0', 10));
